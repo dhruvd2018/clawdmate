@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClawdMate - Private Intelligence. Pure Simplicity.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #e8e6e3;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Wood grain background overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(139, 90, 43, 0.03) 0%, rgba(101, 67, 33, 0.05) 100%),
+                radial-gradient(ellipse at top, rgba(139, 90, 43, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 90, 43, 0.2);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: #c9a76b;
+            text-transform: uppercase;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #8b5a2b 0%, #654321 100%);
+            color: #fff;
+            padding: 14px 36px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(139, 90, 43, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            background: 
+                radial-gradient(ellipse at center top, rgba(139, 90, 43, 0.15) 0%, transparent 60%),
+                #0a0a0a;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 167, 107, 0.3), transparent);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .label-line {
+            width: 40px;
+            height: 1px;
+            background: #c9a76b;
+        }
+
+        .hero-label span {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.4em;
+            color: #c9a76b;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 62px;
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.05;
+            color: #e8e6e3;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h1 .highlight {
+            color: #8b5a2b;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 19px;
+            color: #a8a5a0;
+            margin-bottom: 50px;
+            font-weight: 300;
+            letter-spacing: 0.2px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .google-signin {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #c9a76b 0%, #8b5a2b 100%);
+            padding: 16px 32px;
+        }
+
+        .google-signin svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .outlook-signin {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #0078D4 0%, #005a9e 100%);
+            padding: 16px 32px;
+        }
+
+        .outlook-signin:hover {
+            box-shadow: 0 8px 30px rgba(0, 120, 212, 0.4);
+        }
+
+        .outlook-signin svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .onboarding-time {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .time-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .time-value {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: #c9a76b;
+            text-transform: uppercase;
+        }
+
+        .secondary-button {
+            padding: 14px 36px;
+            border-radius: 0;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            border: 1px solid rgba(201, 167, 107, 0.5);
+            color: #c9a76b;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            font-size: 13px;
+            text-transform: uppercase;
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+            position: relative;
+        }
+
+        .secondary-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: rgba(139, 90, 43, 0.1);
+            transition: width 0.3s;
+            z-index: -1;
+        }
+
+        .secondary-button:hover::before {
+            width: 100%;
+        }
+
+        .secondary-button:hover {
+            border-color: #c9a76b;
+            transform: translateY(-2px);
+        }
+
+        /* How it Works */
+        .how-it-works {
+            padding: 120px 0;
+            background: #0a0a0a;
+            position: relative;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 167, 107, 0.2), transparent);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 48px;
+            font-weight: 200;
+            margin-bottom: 80px;
+            color: #e8e6e3;
+            letter-spacing: -0.5px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 60px;
+            margin-top: 60px;
+        }
+
+        .step {
+            text-align: left;
+            padding: 50px 40px;
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(139, 90, 43, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(139, 90, 43, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .step:hover::before {
+            opacity: 1;
+        }
+
+        .step:hover {
+            transform: translateY(-8px);
+            border-color: rgba(201, 167, 107, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(201, 167, 107, 0.5);
+            color: #c9a76b;
+            font-size: 20px;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+
+        .step h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #e8e6e3;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .step p {
+            color: #a8a5a0;
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Features */
+        .features {
+            padding: 120px 0;
+            background: 
+                radial-gradient(ellipse at center, rgba(139, 90, 43, 0.08) 0%, transparent 70%),
+                #0a0a0a;
+            position: relative;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 167, 107, 0.2), transparent);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2px;
+            margin-top: 60px;
+            background: rgba(139, 90, 43, 0.1);
+        }
+
+        .feature {
+            background: #0f0f0f;
+            padding: 50px 40px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 90, 43, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature:hover::before {
+            left: 100%;
+        }
+
+        .feature:hover {
+            background: #141414;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .feature h3 {
+            font-size: 22px;
+            margin-bottom: 14px;
+            color: #c9a76b;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .feature p {
+            color: #a8a5a0;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 140px 0;
+            background: rgba(15, 15, 15, 0.5);
+            border-top: 1px solid rgba(139, 90, 43, 0.15);
+            border-bottom: 1px solid rgba(139, 90, 43, 0.15);
+        }
+
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .philosophy-icon {
+            font-size: 36px;
+            opacity: 0.2;
+        }
+
+        .philosophy h2 {
+            font-size: 52px;
+            font-weight: 400;
+            line-height: 1.3;
+            color: #e8e6e3;
+            letter-spacing: -0.5px;
+        }
+
+        .philosophy-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.4em;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 140px 0;
+            text-align: center;
+            background: 
+                linear-gradient(135deg, rgba(139, 90, 43, 0.15) 0%, rgba(101, 67, 33, 0.1) 100%),
+                #0a0a0a;
+            color: #e8e6e3;
+            position: relative;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 167, 107, 0.3), transparent);
+        }
+
+        .final-cta h2 {
+            font-size: 52px;
+            margin-bottom: 24px;
+            font-weight: 200;
+            letter-spacing: -0.5px;
+        }
+
+        .final-cta p {
+            font-size: 20px;
+            margin-bottom: 50px;
+            color: #a8a5a0;
+            font-weight: 300;
+        }
+
+        .final-cta .cta-button {
+            background: linear-gradient(135deg, #c9a76b 0%, #8b5a2b 100%);
+            color: #0a0a0a;
+            font-size: 14px;
+            padding: 18px 56px;
+            font-weight: 600;
+        }
+
+        .final-cta .cta-button:hover {
+            box-shadow: 0 12px 40px rgba(201, 167, 107, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            background: #000;
+            color: #666;
+            border-top: 1px solid rgba(139, 90, 43, 0.15);
+        }
+
+        footer p {
+            margin-bottom: 12px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            font-size: 13px;
+        }
+
+        footer a {
+            color: #8b5a2b;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #c9a76b;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .device-mockup {
+                order: -1;
+            }
+
+            .phone-frame {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .philosophy h2 {
+                font-size: 32px;
+            }
+
+            .phone-frame {
+                width: 280px;
+            }
+        }
+
+        /* Device Mockup */
+        .device-mockup {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-frame {
+            width: 340px;
+            aspect-ratio: 9/18.5;
+            background: #0f0f0f;
+            border-radius: 56px;
+            padding: 12px;
+            box-shadow: 
+                0 0 0 1px rgba(201, 167, 107, 0.1),
+                0 80px 100px -20px rgba(0, 0, 0, 0.9);
+            position: relative;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 44px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .status-bar {
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            padding-top: 20px;
+        }
+
+        .status-bar .time {
+            font-size: 10px;
+            font-weight: 700;
+            color: #666;
+            letter-spacing: -0.5px;
+        }
+
+        .status-icons {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .signal, .wifi, .battery {
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 2px;
+        }
+
+        .battery {
+            width: 16px;
+        }
+
+        .imessage-header {
+            display: flex;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-avatar {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 900;
+            color: #000;
+            margin-right: 14px;
+            font-style: italic;
+            letter-spacing: 0.1em;
+        }
+
+        .contact-name {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .contact-status {
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: #666;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .messages-container {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message-bubble {
+            padding: 14px 18px;
+            border-radius: 24px;
+            font-size: 11px;
+            line-height: 1.6;
+            max-width: 90%;
+            letter-spacing: 0.1px;
+        }
+
+        .message-bubble.assistant {
+            background: rgba(40, 40, 40, 0.9);
+            color: #e8e6e3;
+            border: 1px solid rgba(139, 90, 43, 0.15);
+            border-bottom-left-radius: 6px;
+        }
+
+        .message-bubble.user {
+            background: linear-gradient(135deg, #c9a76b 0%, #8b5a2b 100%);
+            color: #fff;
+            border-bottom-right-radius: 6px;
+            align-self: flex-end;
+            max-width: 80%;
+            font-weight: 500;
+        }
+
+        .message-bubble strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .message-input {
+            padding: 24px;
+            background: #000;
+        }
+
+        .input-field {
+            height: 48px;
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .input-field span {
+            font-size: 10px;
+            color: #666;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .send-button {
+            width: 28px;
+            height: 28px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">ClawdMate</div>
+                <a href="#waitlist" class="cta-button">Get Early Access</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-label">
+                        <div class="label-line"></div>
+                        <span>THE EXECUTIVE STANDARD</span>
+                    </div>
+                    
+                    <h1>Private Intelligence.<br><span class="highlight serif">Pure Simplicity.</span></h1>
+                    <p>An uncompromising personal assistant that lives in your messages. No apps to manage. No complexity to navigate. Just results.</p>
+                    
+                    <div class="hero-cta">
+                        <a href="#waitlist" class="cta-button google-signin">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844c-.209 1.125-.843 2.078-1.796 2.717v2.258h2.908c1.702-1.567 2.684-3.874 2.684-6.615z" fill="#4285F4"/>
+                                <path d="M9.003 18c2.43 0 4.467-.806 5.956-2.18L12.05 13.56c-.806.54-1.836.86-3.047.86-2.344 0-4.328-1.584-5.036-3.711H.96v2.332A8.997 8.997 0 009.003 18z" fill="#34A853"/>
+                                <path d="M3.964 10.712A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.33z" fill="#FBBC05"/>
+                                <path d="M9.003 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.464.891 11.426 0 9.003 0A8.997 8.997 0 00.96 4.958L3.967 7.29c.708-2.127 2.692-3.71 5.036-3.71z" fill="#EA4335"/>
+                            </svg>
+                            <span>Sign in with Google</span>
+                        </a>
+                        <a href="#waitlist" class="cta-button outlook-signin">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 3.5H10V2h6v1.5zM16 5.5H10V7h6V5.5zM16 9H10v1.5h6V9zM16 12.5H10V14h6v-1.5z" fill="#0078D4"/>
+                                <path d="M8.5 2H2v12h6.5c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 10.5h-4v-9h4v9z" fill="#0078D4"/>
+                                <circle cx="5.5" cy="8" r="2" fill="#fff"/>
+                            </svg>
+                            <span>Sign in with Outlook</span>
+                        </a>
+                        <div class="onboarding-time">
+                            <span class="time-label">ONBOARDING TIME</span>
+                            <span class="time-value">&lt; 60 SECONDS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Device Mockup -->
+                <div class="device-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <!-- Status Bar -->
+                            <div class="status-bar">
+                                <span class="time">9:41</span>
+                                <div class="status-icons">
+                                    <div class="signal"></div>
+                                    <div class="wifi"></div>
+                                    <div class="battery"></div>
+                                </div>
+                            </div>
+
+                            <!-- iMessage Header -->
+                            <div class="imessage-header">
+                                <div class="contact-avatar">C</div>
+                                <div class="contact-info">
+                                    <div class="contact-name">CLAWDMATE</div>
+                                    <div class="contact-status">Verified Assistant</div>
+                                </div>
+                            </div>
+
+                            <!-- Messages -->
+                            <div class="messages-container">
+                                <div class="message-bubble assistant">
+                                    Welcome back. I've triaged your morning inbox. Three priority messages require your attention, and I've drafted suggested replies for the logistics inquiries.
+                                </div>
+                                <div class="message-bubble user">
+                                    Summarize the high-priority emails first.
+                                </div>
+                                <div class="message-bubble assistant">
+                                    Understood.<br><br>
+                                    1. <strong>Venture Partners:</strong> Final term sheet update.<br>
+                                    2. <strong>Logistics:</strong> Shipment delay to NYC.<br>
+                                    3. <strong>Calendar:</strong> Conflict found at 3 PM.
+                                </div>
+                            </div>
+
+                            <!-- Input -->
+                            <div class="message-input">
+                                <div class="input-field">
+                                    <span>Message</span>
+                                    <div class="send-button">→</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Getting Started Takes Seconds</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>One-Click Connect</h3>
+                    <p>Sign in and connect your email and calendar. We handle the rest with enterprise-grade security.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Text Your Assistant</h3>
+                    <p>Your ClawdMate phone number appears in iMessage. Just start chatting naturally.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Get Things Done</h3>
+                    <p>Manage emails, schedule meetings, get reminders, and more - all through text.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Everything You Need in Your Messages</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">📧</div>
+                    <h3>Email Management</h3>
+                    <p>Read, reply, search, and organize your inbox through simple text commands. Your assistant handles the heavy lifting.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📅</div>
+                    <h3>Smart Scheduling</h3>
+                    <p>Check availability, book meetings, send invites, and get reminders - all without opening your calendar app.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Context-Aware</h3>
+                    <p>Powered by advanced AI, ClawdMate understands your requests and learns your preferences over time.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>Enterprise-grade encryption and privacy controls. Your data is yours, always.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Responses</h3>
+                    <p>Get answers and take action immediately, without switching between apps or waiting.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Focus Mode</h3>
+                    <p>Let ClawdMate filter what's important, summarize threads, and keep you focused on what matters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy">
+        <div class="container">
+            <div class="philosophy-content">
+                <div class="philosophy-icon">💼</div>
+                <h2 class="serif">"Technology is at its most potent when it requires the least of our attention."</h2>
+                <p class="philosophy-label">THE INVISIBLE ASSISTANT</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="waitlist" class="final-cta">
+        <div class="container">
+            <h2>Ready to Transform How You Work?</h2>
+            <p>Join thousands on the waitlist for early access to ClawdMate.</p>
+            <a href="/cdn-cgi/l/email-protection#442c2128282b042728253320292530216a272b297b3731262e21273079012536283d61767405272721373761767416213531213730" class="cta-button">Request Early Access</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 ClawdMate. All rights reserved.</p>
+            <p><a href="/cdn-cgi/l/email-protection#4d25282121220d2e212c3a29202c3928632e2220">Contact Us</a> | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add subtle parallax effect to hero
+        window.addEventListener('scroll', ()
